@@ -1,0 +1,48 @@
+Aufgabe 1:
+
+Im Rahmen der Aufgabe wurden in Wireshark ein IPv4-, ein UDP- sowie ein TCP-Paket untersucht und deren Header-Felder den in der Vorlesung behandelten Kategorien zugeordnet.
+
+IPv4-Paket
+
+Für die Analyse wurde ein IPv4-Paket ausgewählt. Dabei konnten folgende Header-Kategorien identifiziert werden:
+
+Version: 4
+Header Length: 20 Byte
+Type of Service: 0x00 (DSCP: CS0, ECN: Not-ECT)
+Total Length: 66 Byte
+Identification: 0x21a4 (8612)
+Flags: 0x2 (Don’t Fragment)
+Fragment Offset: 0
+Time To Live (TTL): 4
+Protocol: UDP (17)
+Header Checksum: 0xa413
+Source Address: 192.168.0.81
+Destination Address: 239.255.255.250
+
+Das untersuchte IPv4-Paket verwendet das UDP-Protokoll (Protocol = 17). Außerdem ist das „Don’t Fragment“-Flag gesetzt, wodurch das Paket nicht fragmentiert werden soll. Der IPv4-Header entspricht dem in der Vorlesung behandelten Aufbau und enthält unter anderem Informationen über Version, Headerlänge, Paketgröße, TTL, Protokolltyp sowie Quell- und Zieladresse.
+
+UDP-Paket
+
+Anschließend wurde ein UDP-Paket untersucht. Dabei konnten folgende Header-Felder identifiziert werden:
+
+Source Port: 35766
+Destination Port: 15600
+Length: 46 Byte
+Checksum: 0xe079
+
+Der UDP-Header ist im Vergleich zu TCP deutlich kompakter aufgebaut und besteht lediglich aus wenigen Feldern. UDP arbeitet verbindungslos und bietet keine Garantie für Zustellung, Reihenfolge oder Flusskontrolle. Der Header enthält lediglich Informationen zu Quellport, Zielport, Länge und Prüfsumme.
+
+TCP-Paket
+
+Zusätzlich wurde ein TCP-Paket analysiert. Dabei wurden folgende Header-Kategorien identifiziert:
+
+Source Port: 443
+Destination Port: 63265
+Sequence Number: 2805
+Acknowledgement Number: 10480
+Header Length: 20 Byte
+Flags: ACK
+Window Size: 16
+Checksum: 0x3c57
+
+Das betrachtete TCP-Paket besitzt das ACK-Flag. Dadurch bestätigt der Empfänger den erfolgreichen Erhalt zuvor übertragener Daten. TCP arbeitet verbindungsorientiert und stellt Mechanismen wie Quittungen (Acknowledgements), Sequenznummern und Flusskontrolle bereit. Im Vergleich zu UDP besitzt TCP einen umfangreicheren Header und ermöglicht eine zuverlässige Datenübertragung.

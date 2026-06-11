@@ -1,0 +1,27 @@
+Aufgabe 4:
+
+Für die Evaluation wurden die UDP- und TCP-Chatprogramme mit Implementierungen von Kommilitoninnen und Kommilitonen verglichen bzw. deren Kompatibilität betrachtet. Dabei zeigten sich verschiedene potenzielle Probleme, die bei der Kommunikation zwischen unterschiedlichen Implementierungen auftreten können.
+
+Ein erstes Problem betrifft die Interpretation von Befehlen und Nachrichtenformaten. Da einzelne Implementierungen Befehle unterschiedlich interpretieren oder unterschiedlich formatieren können (z. B. Groß-/Kleinschreibung, Leerzeichen oder Reihenfolge von Parametern), kann es dazu kommen, dass Nachrichten nicht korrekt verarbeitet werden. Beispielsweise könnte ein Client einen Befehl in einer anderen Schreibweise senden, wodurch dieser vom Gegenüber nicht erkannt wird.
+
+Ein weiteres Problem besteht in der Verwendung unterschiedlicher Portnummern oder Netzwerkkonfigurationen. Stimmen Zieladresse oder Port nicht überein, kann keine erfolgreiche Kommunikation aufgebaut werden. Insbesondere bei TCP führt dies dazu, dass Verbindungsanfragen fehlschlagen.
+
+Bei TCP können außerdem Probleme durch unterschiedliche Implementierungen der Verbindungsverwaltung auftreten. Beispielsweise kann eine Verbindung unerwartet beendet werden, wenn ein Client die Socket-Verbindung unmittelbar schließt oder Verbindungsabbrüche nicht korrekt behandelt werden. Dadurch können Nachrichten verloren gehen oder andere Clients nicht ordnungsgemäß informiert werden.
+
+Bei UDP besteht zusätzlich die grundsätzliche Schwierigkeit, dass das Protokoll keine zuverlässige Zustellung garantiert. Nachrichten können verloren gehen oder in veränderter Reihenfolge eintreffen. Dadurch kann es insbesondere bei Funktionen wie `sendall` oder der Speicherung von Clients zu Inkonsistenzen kommen.
+
+Als mögliche Lösungen bieten sich standardisierte Nachrichtenformate, eine robustere Verarbeitung von Eingaben (z. B. tolerantere Befehlserkennung), bessere Fehlerbehandlung bei Verbindungsabbrüchen sowie Mechanismen zur Bestätigung empfangener Nachrichten an. Insbesondere bei UDP könnten zusätzliche Bestätigungsmechanismen implementiert werden, um Paketverluste besser zu behandeln.
+
+Konkretes Beispiel:
+
+Beim Test mit einer anderen Implementierung trat das Problem auf, dass mein UDP-Programm den Befehl send so erwartet:
+
+send <Ziel-IP-Adresse> <Ziel-Port> <Nachricht>
+
+Eine andere Implementierung verwendete jedoch gespeicherte Namen und erwartete eher:
+
+send <Name> <Nachricht>
+
+Dadurch konnte die Nachricht nicht korrekt verarbeitet werden, obwohl beide Programme UDP verwendeten. Das Problem lag also nicht am Netzwerkprotokoll selbst, sondern am nicht einheitlich definierten Nachrichtenformat.
+
+Als Lösung sollte vor dem Test ein gemeinsames Befehlsformat festgelegt werden, z. B. dass alle Clients entweder immer IP-Adresse und Port verwenden oder immer registrierte Namen. Zusätzlich könnte das Programm beide Varianten unterstützen, um kompatibler mit anderen Implementierungen zu sein.

@@ -1,0 +1,98 @@
+Aufgabe 2a:
+
+Die Adresse **103.161.122.83/18** besteht aus einer IPv4-Adresse und einer CIDR-Präfixlänge.
+
+**103.161.122.83** beschreibt die Host-IP-Adresse.
+Die **18** bedeutet, dass die ersten **18 Bit den Netzanteil** bilden und die restlichen **14 Bit den Hostanteil** darstellen.
+
+Zur Ermittlung der Subnetzmaske werden die ersten 18 Bit auf 1 gesetzt:
+
+11111111.11111111.11000000.00000000
+
+Dies entspricht der Subnetzmaske:
+
+255.255.192.0
+
+Zur Bestimmung der Netzwerkadresse wird die IP-Adresse mit der Subnetzmaske verknüpft. Daraus ergibt sich:
+
+Netzwerkadresse: 103.161.64.0
+
+Die Broadcastadresse ist die letzte Adresse innerhalb dieses Netzes, also:
+
+Broadcastadresse: 103.161.127.255
+
+
+
+Aufgabe 2b:
+
+(i) 172.16.45.200/20
+
+/20 bedeutet: 20 Bit Netzanteil und 12 Bit Hostanteil.
+
+Subnetzmaske:
+255.255.240.0
+
+Die Blockgröße im dritten Oktett beträgt 16.
+45 liegt im Bereich 32 bis 47.
+
+Netzwerkadresse:
+172.16.32.0
+
+Broadcastadresse:
+172.16.47.255
+
+(ii) 192.168.14.77/26
+
+/26 bedeutet: 26 Bit Netzanteil und 6 Bit Hostanteil.
+
+Subnetzmaske:
+255.255.255.192
+
+Die Blockgröße im vierten Oktett beträgt 64.
+77 liegt im Bereich 64 bis 127.
+
+Netzwerkadresse:
+192.168.14.64
+
+Broadcastadresse:
+192.168.14.127
+
+(iii) 10.55.201.19/13
+
+/13 bedeutet: 13 Bit Netzanteil und 19 Bit Hostanteil.
+
+Subnetzmaske:
+255.248.0.0
+
+Die Blockgröße im zweiten Oktett beträgt 8.
+55 liegt im Bereich 48 bis 55.
+
+Netzwerkadresse:
+10.48.0.0
+
+Broadcastadresse:
+10.55.255.255
+
+
+
+Aufgabe 2c:
+
+Nein, **103.161.122.83/18** liegt nicht im selben Netz wie **103.161.193.83/18**.
+
+Bei **/18** ist die Subnetzmaske:
+
+255.255.192.0
+
+Die Blockgröße im dritten Oktett beträgt 64.
+
+Für **103.161.122.83/18** liegt das dritte Oktett 122 im Bereich 64 bis 127.
+Daraus ergibt sich die Netzwerkadresse:
+
+103.161.64.0
+
+Für **103.161.193.83/18** liegt das dritte Oktett 193 im Bereich 192 bis 255.
+Daraus ergibt sich die Netzwerkadresse:
+
+103.161.192.0
+
+Da die Netzwerkadressen unterschiedlich sind, liegen die beiden IP-Adressen nicht im selben Netz.
